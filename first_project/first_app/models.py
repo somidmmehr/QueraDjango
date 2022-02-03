@@ -9,3 +9,14 @@ class Person(models.Model):
     is_super = models.BooleanField(default=False)
     email = models.EmailField(max_length=250, null=True)
 
+
+class Book(models.Model):
+    name = models.CharField(max_length=10)
+    rate = models.IntegerField(default=0)
+    author = models.ManyToManyField(Person, related_name='books')
+
+
+class Comment(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(Person, on_delete=models.SET('user_deleted'), related_name='comments')
+    create_date = models.DateTimeField(auto_now_add=True)

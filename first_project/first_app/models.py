@@ -10,7 +10,6 @@ class PersonManager(models.Manager):
         super().db_manager(self._db)
 
     def latest_logins(self, count=10):
-
         return self.order_by('-last_login')[:count]
 
     def similar_name_username(self):

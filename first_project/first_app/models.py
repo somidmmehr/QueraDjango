@@ -1,4 +1,20 @@
 from django.db import models
+from django.db.models import *
+
+
+class PersonManager(models.Manager):
+    def __init__(self):
+        self._db = 'MySQL'
+        self._hints = None
+        self.name = None
+        super().db_manager(self._db)
+
+    def latest_logins(self, count=10):
+
+        return self.order_by('-last_login')[:count]
+
+    def similar_name_username(self):
+        return self.filter(name=F('username'))
 
 
 # Create your models here.
@@ -8,6 +24,9 @@ class Person(models.Model):
     last_login = models.DateTimeField(auto_now_add=True, null=True)
     is_super = models.BooleanField(default=False)
     email = models.EmailField(max_length=250, null=True)
+
+    objects = models.Manager()
+    people = PersonManager()
 
 
 class Book(models.Model):

@@ -3,5 +3,5 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def signup_view(request):
-    return HttpResponse('Signup Completed!')
+def signup_view(request, name):
+    return HttpResponse(f'Signup Completed! {name}')

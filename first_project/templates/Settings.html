@@ -1,0 +1,80 @@
+$var jsPath: static/js/profile-script.js
+
+<div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar p-3">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill"
+               data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-home"
+               aria-selected="true"> <i class="bi bi-person-lines-fill"></i> Profile
+            </a>
+            <a class="nav-link" id="v-pills-security-tab" data-bs-toggle="pill"
+               data-bs-target="#v-pills-security" type="button" role="tab" aria-controls="v-pills-profile"
+               aria-selected="false"> <i class="bi bi-shield-lock"></i> Security
+            </a>
+            <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+               data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+               aria-selected="false"><i class="bi bi-chat-left-text-fill"></i> Messages
+            </a>
+        </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex align-items-start">
+            <div class="tab-content w-100" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
+                     aria-labelledby="v-pills-profile-tab">
+
+                    <div class="padding">
+                        <div class="col-md-12">
+                            <!-- Column -->
+                            <div class="card">
+                                <img class="card-img-top" src="static/uploads/s.omid.m.mehr/bg.jpeg"
+                                     alt="Card image cap">
+                                <div class="card-body little-profile text-center">
+                                    <div class="pro-img"><img src="static/uploads/$session['user']['avatar']" alt="user"></div>
+                                    <h3 class="m-b-0">$session['user']['first_name'] $session['user']['last_name']</h3>
+                                    <p>Web Designer &amp; Developer</p>
+                                    <div class="row text-center mt-3">
+                                        <span class="badge bg-secondary mb-3">Last login: $session['user']['last_login']</span>
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">10434</h3><small>Articles</small>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">434K</h3><small>Followers</small>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 m-t-20">
+                                            <h3 class="m-b-0 font-light">5454</h3><small>Following</small>
+                                        </div>
+                                    </div>
+
+                                    <hr/>
+                                    <div class="text-start">
+                                        <form id="pform" class="needs-validation" enctype="multipart/form-data" novalidate>
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">Choose avatar</label>
+                                                <input class="form-control" name="formFile" id="formFile" type="file" required>
+                                                <div class="invalid-feedback">
+                                                    Please select an image to upload.
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-save"> Save changes </i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-security" role="tabpanel" aria-labelledby="v-pills-security-tab">
+                    2
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    3
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

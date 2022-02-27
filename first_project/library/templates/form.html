@@ -1,0 +1,17 @@
+{% extends "MainLayout.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 offset-md-6">
+            {{ message }}
+            <form method="post">
+                <div class="form-group">
+                {{ form }}
+                </div>
+                <hr/>
+                <button class="btn btn-dark btn-block">submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

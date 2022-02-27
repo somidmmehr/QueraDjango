@@ -37,3 +37,16 @@ def signup(request):
         form = SignUpForm(request.POST)
         state = form.is_valid()
         return JsonResponse({"error": form.errors, "POST": request.POST, "validity": state})
+
+
+@csrf_exempt
+def form(request):
+    if request.method == "GET":
+        sign_up_form = SignUpForm()
+        return render(request, "form.html", context={'form': sign_up_form})
+    if request.method == "POST":
+        sign_up_form = SignUpForm(request.POST)
+        if sign_up_form.is_valid():
+            return render(request, "form.html", context={'message': "success"})
+        else:
+            return render(request, "form.html", context={'message': sign_up_form.errors})

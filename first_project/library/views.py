@@ -49,4 +49,18 @@ def form(request):
         if sign_up_form.is_valid():
             return render(request, "form.html", context={'message': "success"})
         else:
-            return render(request, "form.html", context={'message': sign_up_form.errors})
+            return render(request, "form.html", context={'message': sign_up_form.errors, 'form': sign_up_form})
+
+
+def signup2(request):
+    if request.method == "GET":
+        sign_form = SignUpForm2()
+        return render(request, 'signup2.html', context={'form': sign_form})
+    if request.method == "POST":
+        sign_form = SignUpForm2(request.POST)
+        if sign_form.is_valid():
+            person = sign_form.save(commit=False)
+            person.save(using="MySQL")
+            return render(request, 'signup2.html', context={})
+        else:
+            return render(request, 'signup2.html', context={'form': sign_form})

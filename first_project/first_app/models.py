@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import *
+from django.core.validators import *
 
 
 class PersonManager(models.Manager):
@@ -18,8 +19,10 @@ class PersonManager(models.Manager):
 
 # Create your models here.
 class Person(models.Model):
-    name = models.CharField(max_length=150)
+    first_name = models.CharField(max_length=150, validators=[MinLengthValidator(6)])
+    last_name = models.CharField(max_length=150)
     username = models.CharField(max_length=150)
+    password = models.CharField(max_length=64, validators=[MinLengthValidator(6)])
     last_login = models.DateTimeField(auto_now_add=True, null=True)
     is_super = models.BooleanField(default=False)
     email = models.EmailField(max_length=250, null=True)

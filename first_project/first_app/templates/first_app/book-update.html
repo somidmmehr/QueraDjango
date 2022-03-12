@@ -1,0 +1,13 @@
+{% extends 'MainLayout.html' %}
+{% load static%}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <hr/>
+        <button class="btn btn-dark btn-block">save</button>
+    </form>
+{% endblock %}

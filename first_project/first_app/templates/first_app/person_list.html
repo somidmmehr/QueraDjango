@@ -1,0 +1,8 @@
+{% extends 'MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+    {% for person in object_list %}
+        <p>{{ person }}</p>
+    {% endfor %}
+{%  endblock %}

@@ -30,11 +30,17 @@ class Person(models.Model):
     objects = models.Manager()
     people = PersonManager()
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}, username: {self.username}, email: {self.email}"
+
 
 class Book(models.Model):
     name = models.CharField(max_length=10)
     rate = models.IntegerField(default=0)
     author = models.ManyToManyField(Person, related_name='books')
+
+    def __str__(self):
+        return f"{self.name} , rate: {self.rate}, author: {self.author.all()}"
 
 
 class Comment(models.Model):

@@ -1,0 +1,32 @@
+{% extends 'MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% for book in object_list %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        {{ book.name }} - rate: {{ book.rate }}
+                        <a href="{% url 'book-delete' pk=book.pk %}" class="btn btn-danger btn-sm float-end">delete</a>
+                        <a href="{% url 'book-edit' pk=book.pk %}" class="btn btn-warning btn-sm float-end">edit</a>
+                    </div>
+                    <div class="card-body">
+                        written by:
+                        <ul>
+                            {% for person in book.author.all %}
+                                <li>{{ person.first_name }} {{ person.last_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                <div class="card-footer">
+                    <a href="{% url "book-detail" pk=book.pk %}">read more</a>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'new-book' %}" class="btn btn-primary">New Book</a>
+        </div>
+    </div>
+{%  endblock %}

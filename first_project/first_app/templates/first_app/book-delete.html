@@ -1,0 +1,13 @@
+{% extends 'MainLayout.html' %}
+{% load static%}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+        </div>
+        <hr/>
+        <button class="btn btn-danger">Yes</button>
+    </form>
+{% endblock %}

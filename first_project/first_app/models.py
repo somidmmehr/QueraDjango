@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import *
 from django.core.validators import *
@@ -25,13 +26,14 @@ class Person(models.Model):
     password = models.CharField(max_length=64, validators=[MinLengthValidator(6)])
     last_login = models.DateTimeField(auto_now_add=True, null=True)
     is_super = models.BooleanField(default=False)
-    email = models.EmailField(max_length=250, null=True)
+    email = models.EmailField(max_length=250, null=True, blank=True)
 
     objects = models.Manager()
     people = PersonManager()
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}, username: {self.username}, email: {self.email}"
+        return f"{self.first_name} {self.last_name}" \
+
 
 
 class Book(models.Model):
@@ -40,10 +42,23 @@ class Book(models.Model):
     author = models.ManyToManyField(Person, related_name='books')
 
     def __str__(self):
-        return f"{self.name} , rate: {self.rate}, author: {self.author.all()}"
+        authors = " - ".join([x.first_name+" "+x.last_name for x in self.author.all()])
+        return f"{self.name} , rate: {self.rate}, author: {authors}"
 
 
 class Comment(models.Model):
     text = models.TextField()
     user = models.ForeignKey(Person, on_delete=models.SET('user_deleted'), related_name='comments')
     create_date = models.DateTimeField(auto_now_add=True)
+
+
+class Profile(models.Model):
+    COUNTRY_CHOICES = [
+        ('IR', 'Iran'),
+        ('JP', 'Japan'),
+        ('TU', 'Turkey'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    country = models.CharField(max_length=20, null=True, blank=True, choices=COUNTRY_CHOICES)
+

@@ -54,15 +54,15 @@
                            aria-label="Search">
                 </form>
 
-                {% if False %}
+                {% if user.is_authenticated %}
                     <div class="text-end">
-                        <a href="settings" class="btn btn-link text-white"> Hi, $session['user']['first_name']! </a>
-                        <a href="logout" class="btn btn-warning">logout</a>
+                        <a href="settings" class="btn btn-link text-white"> Hi, {{ user.first_name }} </a>
+                        <a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-warning">logout</a>
                     </div>
                 {% else %}
                     <div class="text-end">
-                        <a href="login" type="button" class="btn btn-outline-light me-2">Login</a>
-                        <a href="register" class="btn btn-warning">Sign-up</a>
+                        <a href="{% url 'login' %}?next={{request.path}}" type="button" class="btn btn-outline-light me-2">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-warning">Sign-up</a>
                     </div>
                 {% endif %}
             </div>

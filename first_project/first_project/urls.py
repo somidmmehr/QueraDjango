@@ -22,7 +22,8 @@ from first_project.settings import DEBUG
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('first_app.urls')),
-    path('library/', include('library.urls'))
+    path('library/', include('library.urls')),
+    path('rest/', include('rested.urls'))
 ]
 
 
